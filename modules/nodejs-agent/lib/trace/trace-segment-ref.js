@@ -40,6 +40,7 @@ function TraceSegmentRef(contextCarrier) {
 
   this._entryApplicationInstanceId = contextCarrier.getEntryApplicationInstanceId();
   this._parentApplicationInstanceId = contextCarrier.getParentApplicationInstanceId();
+  this._primaryDistributedTraceId = contextCarrier.getPrimaryDistributedTraceId();
 
   contextCarrier.fetchPeerHostInfo(function(peerId) {
     that._peerId = peerId;
@@ -121,4 +122,8 @@ TraceSegmentRef.prototype.transform = function() {
   }
 
   return serializedTraceSegmentRef;
+};
+
+TraceSegmentRef.prototype.getPrimaryDistributedTraceId = function() {
+        return this._primaryDistributedTraceId;
 };
